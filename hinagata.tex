@@ -1,0 +1,37 @@
+\documentclass[a4paper,oneside]{jsbook}
+
+\input{preamble_p.tex}
+
+\begin{document}
+
+
+\title{ほげほげ}
+\author{山田太郎}
+\date{}%空欄で可
+\maketitle
+
+
+\section{一番大きい見出し（階層が一番浅い見出し）}
+\begin{equation}
+  E=mc^2\label{hogehoge:eq:E=mc^2}
+\end{equation}
+数式の引用\eqref{hogehoge:eq:E=mc^2}こんなかんじ
+
+\subsection{その次に小さい見出し}
+
+\subsubsection{一番小さい見出し（階層が}
+
+
+
+
+
+\let\oldaddcontentsline\addcontentsline%無理やりtableofcontentsにカウントされないようにしています. 
+\renewcommand{\addcontentsline}[3]{}
+\begin{thebibliography}{99}
+  \bibitem{kijimei:bunkenmei}
+    参考文献を書くところ、著者名、「タイトル」出版社なりurlなり。urlを貼る場合は\verb|\url{}|の中に書き込むように。
+    サンプル\url{https://sites.google.com/view/buturinokai-portal/}
+\end{thebibliography}
+\let\addcontentsline\oldaddcontentsline
+
+\end{document}

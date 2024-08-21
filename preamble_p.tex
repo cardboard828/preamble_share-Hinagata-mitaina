@@ -1,0 +1,149 @@
+
+%適宜\documentclass[a4paper,11pt]{jsarticle}を書いた下に、
+%\input{}を使ってこのプリアンブル・ファイルを読み込む
+%同じフォルダ内に入れてほしいです（pathとか環境によってだるいんで）
+
+%-----グラフィック------------------------------------------------------
+%呪文
+\usepackage[dvipdfmx]{graphicx, xcolor}
+%枠つき部分作るならtcolorbox一択、使い方はググればわかる
+\usepackage{tcolorbox}
+%tcolorboxの機能拡張。ページまたぎを実現/ボックスの装飾機能の拡張
+\tcbuselibrary{breakable,skins,raster}
+%tcolorboxの使用例。ゼミ資料のグレーの枠はこう定義して使ってる。
+\newtcolorbox{mybox}{colframe=gray!10, colback=gray!10, sharp corners}
+
+%tikzライブラリ
+\usepackage{tikz}
+%普通の図を書く上での最低限のパッケージ（だった気がする）、もっとニッチな図を描きたくなったら適宜追加（回路図だったり、可換図式だったり）
+\usetikzlibrary{intersections,calc,arrows.meta,patterns}
+
+
+%-----以下数式関係----------------------------------------------------
+
+% 数式, 米国数学会が開発したのがamsmath, フォントを使うためのパッケージがamssymbs
+\usepackage{amsmath,amssymb}
+%定理環境、コピペ
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{dfn}{定義}[section]
+\newtheorem{prop}{命題}[section]
+\newtheorem{lem}{補題}[section]
+\newtheorem{thm}{定理}[section]
+\newtheorem{cor}{系}[section]
+\newtheorem{rem}{注意}[section]
+\newtheorem*{rem*}{注意}
+\newtheorem{fact}{事実}[section]
+\newtheorem{e.g.}{例}[section]
+%証明終わりの四角
+\renewcommand{\qedsymbol}{$\square$}
+%花文字?（2023/6/10追加）, RSFS, Ralph Smith's Formal Script(2024/3/3追記)
+\usepackage{mathrsfs}
+% 数式太文字
+\usepackage{bm}
+%proofカスタム, 適宜変更
+\renewcommand{\proofname}{\textbf{証明}}
+%\label{}して\ref, \eqref　で参照した数式のみに数式番号が振られるようにしてる
+%だからequationやalignを*なしで使っても参照しない限り式番号はつかない
+%好みの問題だから適宜コメントアウトしてもらっても大丈夫
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+
+%-----以下自然科学関係------------------------------------------------------
+
+%便利なので
+\usepackage{physics}
+%単位
+\usepackage{siunitx}
+%元素とか, 化学反応式とか
+\usepackage[version=4]{mhchem}
+\usepackage{chemfig}
+
+%-----以下部誌の体裁関連------------------------------------------------------
+
+% 表の強制固定
+\usepackage{float}
+%気にしないでください
+\usepackage[explicit]{titlesec}
+\titleformat{\part}[hang]{\bfseries\gtfamily}{}{10pt}{}
+
+%ページ上部・下部の装飾
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[RO,R]{\rightmark}
+\fancyhead[L,LO]{\leftmark}
+\cfoot{\thepage}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection #1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection #1}}
+\fancyfoot[L]{東北大学 第?回学祭}
+\fancyfoot[R]{ずんだゼミ}
+\setlength{\footskip}{16.0pt}
+
+%気にしないでください（thebibliography環境をchapterではなくsectionみたいに扱う）
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+
+%気にしないでください（sectionの番号をchapter-independentにする）
+\usepackage{remreset}
+\makeatletter
+  \@removefromreset{section}{chapter}
+\makeatother
+\renewcommand{\thesection}{\arabic{section}}
+
+%subsubsectionにも番号つける
+\setcounter{secnumdepth}{3}
+
+%-----以下その他------------------------------------------------------
+
+% comment、\begin{comment}~\end{comment}で挟んだ箇所がコンパイル時に無視される
+\usepackage{comment}
+%OTFパッケージ・漢字用、例えば「﨑」はuplatexだと出力できないけど、対応するjisコードを\UTF{}で読み込むと出力できる
+\usepackage[jis2004]{otf}
+
+%-----以下コード貼り付け関係--------------------------------------------------------------
+% https://www.stex.phys.tohoku.ac.jp/~ohno/keisoku/ （課題1）からそのままコピペした気がする
+\usepackage{txfonts} %設定部分
+\usepackage{listings}
+%\renewcommand{\lstlistingname}{リスト} % 「ソースコード」を変更する
+\lstset{language=C,% ソースの種類の指定
+        basicstyle=\footnotesize,% リスト全体の設定
+        commentstyle=\color{blue}\textit,% コメント部分の設定
+        keywordstyle=\textbf,%  C言語の予約語(if,for,while等)の設定
+        %keywordstyle=\color{red}\bfseries,%
+        classoffset=1,%
+        breakindent=20pt,%    改行時インデント量。デフォルト：20pt。
+        breaklines=true,%   行が長くなってしまった場合の改行。
+        frame=tlRB,framesep=7pt,% frame は top,left,right,bottom の1文字で指定、大文字は二重線
+        showstringspaces=false,% string 中のスペースを記号表示するか
+        numbers=left,% 行番号を付ける位置
+        %stepnumber=2,%  何行ごとに行番号を表示するか デフォルトは 1
+        numberstyle=\scriptsize\color{blue}% 行番号の表示スタイル
+        }%
+
+%-----以下 hyperref 関係（リンクつきpdf）------------------------------------------------------
+\usepackage[
+dvipdfmx,% 欧文ではコメントアウトする
+setpagesize=false,%
+bookmarks=true,%
+bookmarksdepth=tocdepth,%
+bookmarksnumbered=true,%
+colorlinks=false,%
+allcolors=blue%
+pdftitle={},%
+pdfsubject={},%
+pdfauthor={},%
+pdfkeywords={}%
+]{hyperref}
+% PDFのしおり機能の日本語文字化けを防ぐ((u)pLaTeXのときのみかく)
+\usepackage{pxjahyper}
+\hypersetup{
+    colorlinks=true, %ここをfalseにすればlinkの文字に色がつかずに四角で囲まれるようになる
+    citecolor=green,
+    linkcolor=blue,
+    urlcolor=orange,
+}
+
+
+
+
+
