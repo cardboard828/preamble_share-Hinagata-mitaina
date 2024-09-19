@@ -435,6 +435,10 @@ INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amsfonts/a
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+INPUT ./DMO.tex
+INPUT DMO.tex
+INPUT ./DMO.tex
+INPUT DMO.tex
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /Applications/TeXLive/Library/texlive/2020/texmf-dist/tex/latex/amscls/amsthm.sty
